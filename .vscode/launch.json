@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "fs-uae",
+            "request": "launch",
+            "name": "Launch",
+            "emulator": "${workspaceFolder}/bin/osx/fs-uae",
+            "program": "${workspaceFolder}/fs-uae/hd0/gencop",
+            "conf": "${workspaceFolder}/fs-uae/test.fs-uae",
+            "drive": "${workspaceFolder}/fs-uae/hd0",
+            "stopOnEntry": true,
+            "serverName": "localhost",
+            "serverPort": 6860
+        }
+    ]
+}

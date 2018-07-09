@@ -1,0 +1,25 @@
+{
+    "[m68k]": {
+        "files.encoding": "iso88591"
+    },
+    "amiga-assembly.vasm": {
+        "enabled": true,
+        "file": "bin/osx/vasmm68k_mot",
+        "options": [
+            "-m68000",
+            "-Fhunk",
+            "-linedebug"
+        ]
+    },
+    "amiga-assembly.vlink": {
+        "enabled": true,
+        "file": "bin/osx/vlink",
+        "includes": "*.s",
+        "excludes": "",
+        "exefilename": "../fs-uae/hd0/gencop",
+        "options": [
+            "-bamigahunk",
+            "-Bstatic"
+        ]
+    }
+}

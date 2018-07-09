@@ -20,4 +20,18 @@ The binaries are build for Osx.
 - Build a modified version of [Fs-UAE](https://github.com/prb28/fs-uae)
 - Modify the settings and the launch configuration to this new binaries
 
+## Commands
+### Memory dump
+In the debug command field type
+```
+m address,size[,wordSizeInBytes,rowSizeInWords]
+```
+example :
+```
+m 5850,10,2,4
+```
+will print :
+```
+01fc 0000 0100 0200 | ........
+```
 

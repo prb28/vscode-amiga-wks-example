@@ -2,6 +2,8 @@
 Example of vscode workspace for Amiga Assembly building and debugging.
 The binaries are build for Osx.
 
+![Debugging sesion](images/debugSession.gif)
+
 ## Setup VSCode
 - Clone this repository
 - Install the 0.7.0 Amiga Assembly vscode extension from the vsix file

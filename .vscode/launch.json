@@ -14,7 +14,9 @@
             "drive": "${workspaceFolder}/fs-uae/hd0",
             "stopOnEntry": true,
             "serverName": "localhost",
-            "serverPort": 6860
+            "serverPort": 6860,
+            "trace": false,
+            "startEmulator": true
         }
     ]
 }

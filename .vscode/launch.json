@@ -5,9 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "fs-uae-run",
+            "request": "launch",
+            "name": "Run",
+            "emulator": "${workspaceFolder}/bin/osx/fs-uae",
+            "conf": "${workspaceFolder}/fs-uae/run.fs-uae",
+            "buildWorkspace": true
+        },
+        {
             "type": "fs-uae",
             "request": "launch",
-            "name": "Launch",
+            "name": "Debug",
             "emulator": "${workspaceFolder}/bin/osx/fs-uae",
             "program": "${workspaceFolder}/fs-uae/hd0/gencop",
             "conf": "${workspaceFolder}/fs-uae/test.fs-uae",
@@ -16,7 +24,8 @@
             "serverName": "localhost",
             "serverPort": 6860,
             "trace": false,
-            "startEmulator": true
+            "startEmulator": true,
+            "buildWorkspace": true
         }
     ]
 }

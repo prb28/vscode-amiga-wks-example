@@ -13,6 +13,7 @@ The binaries are build for Osx.
 - Open the 'gencode.s' file
 - Click on 'Build' in the bottom status bar 
 ## Debug the application
+- Edit the fs-uae/run.fs-uae and fs-uae/test.fs-uae drive configuration to an absolute path (hard_drive_0 = vscode-amiga-wks-example/fs-uae/hd0)
 - Add a breakpoint to the file
 - Type F5 to start debugging
 

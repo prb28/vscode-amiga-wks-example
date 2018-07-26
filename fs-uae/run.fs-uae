@@ -1,6 +1,0 @@
-[fs-uae]
-chip_memory = 1024
-hard_drive_0 = vscode-amiga-wks-example/fs-uae/hd0
-joystick_port_1 = none
-amiga_model = A1200
-slow_memory = 1792

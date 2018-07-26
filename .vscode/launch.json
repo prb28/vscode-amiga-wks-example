@@ -8,24 +8,37 @@
             "type": "fs-uae-run",
             "request": "launch",
             "name": "Run",
+            "buildWorkspace": true,
             "emulator": "${workspaceFolder}/bin/osx/fs-uae",
-            "conf": "${workspaceFolder}/fs-uae/run.fs-uae",
-            "buildWorkspace": true
+            "options": [
+                "--chip_memory=1024",
+                "--hard_drive_0=${workspaceFolder}/fs-uae/hd0",
+                "--joystick_port_1=none",
+                "--amiga_model=A1200",
+                "--slow_memory=1792"
+            ]
         },
         {
             "type": "fs-uae",
             "request": "launch",
             "name": "Debug",
-            "emulator": "${workspaceFolder}/bin/osx/fs-uae",
-            "program": "${workspaceFolder}/fs-uae/hd0/gencop",
-            "conf": "${workspaceFolder}/fs-uae/test.fs-uae",
-            "drive": "${workspaceFolder}/fs-uae/hd0",
             "stopOnEntry": true,
             "serverName": "localhost",
             "serverPort": 6860,
             "trace": false,
             "startEmulator": true,
-            "buildWorkspace": true
+            "buildWorkspace": true,
+            "emulator": "${workspaceFolder}/bin/osx/fs-uae",
+            "program": "${workspaceFolder}/fs-uae/hd0/gencop",
+            "options": [
+                "--chip_memory=1024",
+                "--hard_drive_0=${workspaceFolder}/fs-uae/hd0",
+                "--joystick_port_1=none",
+                "--amiga_model=A1200",
+                "--slow_memory=1792",
+                "--remote_debugger=200",
+                "--use_remote_debugger=true"
+            ]
         }
     ]
 }

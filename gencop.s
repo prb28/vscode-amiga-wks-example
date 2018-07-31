@@ -51,7 +51,7 @@ init:
 ;---------- Copper list ----------
               movea.l    copperlist,a0
               move.w     #$1fc,(a0)+   
-              move.w     #0,(a0)+                ;slow fetch mode for AGA compatibility : ? garder en début de copperlist
+              move.w     #0,(a0)+                ;slow fetch mode for AGA compatibility
               move.w     #$100,(a0)+
               move.w     #$0200,(a0)+            ; wait for screen start
 
@@ -129,7 +129,7 @@ resetcount:
 ******************************************************************	
 mainloop:
 	
-		; WAit for vertical blank
+		; Wait for vertical blank
               move.w     #$0c,d0                 ;No buffering, so wait until raster
               bsr.w      WaitRaster              ;is below the Display Window.
 
@@ -160,7 +160,7 @@ checkmouse:
 exit:
               move.l     d4,$dff080              ; restoring copperlist
               or         #$c000,d5               ; activating interruptions
-              move       d5,$dff09a              ; réactivation des interruptions
+              move       d5,$dff09a              ; rï¿½activation des interruptions
               rts
 	
 WaitRaster:				;Wait for scanline d0. Trashes d1.

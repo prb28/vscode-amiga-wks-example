@@ -19,20 +19,39 @@ The binaries are build for Osx.
 - Build [VASM](http://sun.hasenbraten.de/vasm/index.php?view=main)
 - Build [VLINK](http://sun.hasenbraten.de/vlink/index.php?view=main)
 - Build a modified version of [Fs-UAE](https://github.com/prb28/fs-uae)
+- Download/Build [CAPSTONE](http://www.capstone-engine.org/download.html)
 - Modify the settings and the launch configuration to this new binaries
 
 ## Commands
 ### Memory dump
 In the debug command field type
 ```
-m address,size[,wordSizeInBytes,rowSizeInWords]
+mm address|${register|symbol}, size[, wordSizeInBytes, rowSizeInWords,ab]
+       a: show ascii output, b: show bytes output
 ```
-example :
+examples:
 ```
 m 5850,10,2,4
+m ${mycopperlabel},10,2,4
 ```
-will print :
+will print:
 ```
 01fc 0000 0100 0200 | ........
 ```
-
+### Disassembled Memory dump
+```
+m address|${register|symbol},size,d
+```
+example:
+```
+m ${pc},10,d
+```
+### Set memory
+```
+M address|${register|symbol}=bytes
+```
+examples:
+```
+M 5c50=0ff534
+M ${mycopperlabel}=0ff534
+```

@@ -21,10 +21,6 @@ COPPERLIST_SIZE=1000		;Size of the copperlist
 LINE=100			;<= 255
 
 init:
-
-
-
-
               move.l     4.w,a6                  ; execbase
               clr.l      d0                      
 
@@ -160,7 +156,7 @@ checkmouse:
 exit:
               move.l     d4,$dff080              ; restoring copperlist
               or         #$c000,d5               ; activating interruptions
-              move       d5,$dff09a              ; r�activation des interruptions
+              move       d5,$dff09a
               rts
 	
 WaitRaster:				;Wait for scanline d0. Trashes d1.

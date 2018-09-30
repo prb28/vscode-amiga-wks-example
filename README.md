@@ -2,15 +2,14 @@
 Example of vscode workspace for Amiga Assembly building and debugging.
 The binaries are build for Osx.
 
-![Debugging sesion](images/debugSession.gif)
-
 ## Get the files
 - Clone this repository
-- Get the binaries from the github [releases](https://github.com/prb28/vscode-amiga-wks-example/releases)
+
+ `git clone  --depth 1 https://github.com/prb28/vscode-amiga-wks-example.git`
+
+- Get the binaries from the github [releases](https://github.com/prb28/vscode-amiga-assembly/releases)
 ## Setup VSCode
-- Install the 0.7.0 Amiga Assembly vscode extension from the vsix file
-- Launch VSCode
-- type F1 and select the option "Extension: Install from VSIX..."
+- Launch VSCode and install the extension
 - For linux and windows : Rename and replace the default config files the .vscode/settgins-xxxx.json and .vscode/launch-xxx.json
 - Check the paths in these files
 ## Build the assembly file
@@ -26,6 +25,3 @@ The binaries are build for Osx.
 - Download/Build [CAPSTONE](http://www.capstone-engine.org/download.html)
 - Modify the settings and the launch configuration to this new binaries
 
-## Commands
-### Memory dump
-See the DEBUG console for the commands help.

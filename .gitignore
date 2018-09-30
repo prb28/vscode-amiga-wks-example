@@ -2,3 +2,5 @@ build
 fs-uae/hd0/gencop
 .DS_Store
 bin/*
+.vscode/launch.json
+.vscode/settings.json

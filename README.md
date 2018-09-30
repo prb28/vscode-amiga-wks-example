@@ -8,10 +8,17 @@ The binaries are build for Osx.
  `git clone  --depth 1 https://github.com/prb28/vscode-amiga-wks-example.git`
 
 - Get the binaries from the github [releases](https://github.com/prb28/vscode-amiga-assembly/releases)
+
 ## Setup VSCode
 - Launch VSCode and install the extension
-- For linux and windows : Rename and replace the default config files the .vscode/settgins-xxxx.json and .vscode/launch-xxx.json
-- Check the paths in these files
+- Rename the config files the .vscode/settgins-xxxx.json and .vscode/launch-xxx.json
+
+`.vscode\settings-windows_x64.json -> .vscode\settings.json`
+
+`.vscode\launch-windows_x64.json -> .vscode\launch.json`
+
+- **Check the paths** in these files
+
 ## Build the assembly file
 - Open the 'gencode.s' file
 ## Debug the application

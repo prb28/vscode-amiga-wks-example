@@ -4,7 +4,7 @@ The binaries are build for Osx.
 
 ## Get the files
 ### Easy way 
-- Download the last [Example workspace bundle](https://github.com/prb28/vscode-amiga-assembly/releases)
+- Download the latest [Example workspace bundle](https://github.com/prb28/vscode-amiga-wks-example/releases/download/0.9/vscode-amiga-wks-example.zip)
 
 ### Not so easy way 
 - Clone this repository

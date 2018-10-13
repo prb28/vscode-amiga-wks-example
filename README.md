@@ -15,11 +15,12 @@ The binaries are build for Osx.
 
 ## Setup VSCode
 - Launch VSCode and install the *Amiga Assembly Extension* extension
-- Open the workspace **File/Open Workspace...** -> Select the **corresponding file to your OS**
 
 ## Debug the application
-- Open the 'gencode.s' file
-- Add a breakpoint to the file
+
+![Debug example](images/debug.gif)
+
+- Open the workspace **File/Open Workspace...** -> Select the **corresponding file to your OS**
 - **Select the debug launch configuration corresponding to your OS** and press *start debugging*
 
 ## Binaries used to build and debug the assembly

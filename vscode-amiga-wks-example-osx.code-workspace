@@ -25,6 +25,13 @@
 				"-bamigahunk",
 				"-Bstatic"
 			]
+		},
+		"amiga-assembly.adfgenerator": {
+			"ADFToolsParentDir": "bin/osx",
+			"sourceRootDir": "fs-uae/hd0",
+			"outputADFFile": "./build/disk.adf",
+			"includes": "**/*",
+			"excludes": "**/.*"
 		}
 	}
 }

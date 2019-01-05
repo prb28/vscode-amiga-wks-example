@@ -2,26 +2,27 @@
 
 ;Registres
 
-INTENA=$09A
-INTENAR=$01C
-INTREQ=$09C
-INTREQR=$01E
-DMACON=$096
-DMACONR=$002
-COLOR00=$dff180
-C_COLOR00=$180
-COP1LCH=$dff080
-COP1LCL=$dff082
-COPJMP1=$dff088
-VPOSR=$dff004
+INTENA          = $09A
+INTENAR         = $01C
+INTREQ          = $09C
+INTREQR         = $01E
+DMACON          = $096
+DMACONR         = $002
+COLOR00         = $dff180
+C_COLOR00       = $180
+COP1LCH         = $dff080
+COP1LCL         = $dff082
+COPJMP1         = $dff088
+VPOSR           = $dff004
 
 ;Programme
 
-COPPERLIST_SIZE=1000		;Size of the copperlist
-LINE=100			;<= 255
+COPPERLIST_SIZE = 1000                           ;Size of the copperlist
+LINE            = 100                            ;<= 255
 
 init:
-              move.l     4.w,a6                  ; execbase
+       movem.l    d0-a6,-(sp)
+               move.l     4.w,a6                  ; execbase
               clr.l      d0                      
 
 	; Allocation of chip memory
@@ -124,7 +125,6 @@ resetcount:
 
 ******************************************************************	
 mainloop:
-	
 		; Wait for vertical blank
               move.w     #$0c,d0                 ;No buffering, so wait until raster
               bsr.w      WaitRaster              ;is below the Display Window.
@@ -157,6 +157,7 @@ exit:
               move.l     d4,$dff080              ; restoring copperlist
               or         #$c000,d5               ; activating interruptions
               move       d5,$dff09a
+              movem.l    (sp)+,d0-a6 
               rts
 	
 WaitRaster:				;Wait for scanline d0. Trashes d1.

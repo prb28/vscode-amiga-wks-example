@@ -21,8 +21,8 @@ COPPERLIST_SIZE = 1000                           ;Size of the copperlist
 LINE            = 100                            ;<= 255
 
 init:
-       movem.l    d0-a6,-(sp)
-               move.l     4.w,a6                  ; execbase
+              movem.l    d0-a6,-(sp)
+              move.l     4.w,a6                  ; execbase
               clr.l      d0                      
 
 	; Allocation of chip memory

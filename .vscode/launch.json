@@ -7,6 +7,7 @@
             "name": "WINDOWS Run",
             "buildWorkspace": true,
             "emulator": "${workspaceFolder}\\bin\\windows_x64\\fs-uae.exe",
+            "emulatorWorkingDir": "${workspaceFolder}\\bin\\windows_x64",
             "options": [
                 "--chip_memory=1024",
                 "--hard_drive_0=${workspaceFolder}\\fs-uae\\hd0",
@@ -26,6 +27,7 @@
             "startEmulator": true,
             "buildWorkspace": true,
             "emulator": "${workspaceFolder}\\bin\\windows_x64\\fs-uae.exe",
+            "emulatorWorkingDir": "${workspaceFolder}\\bin\\windows_x64",
             "program": "${workspaceFolder}\\fs-uae\\hd0\\gencop",
             "options": [
                 "--chip_memory=1024",

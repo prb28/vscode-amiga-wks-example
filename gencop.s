@@ -1,6 +1,6 @@
-;---------- Constantes ----------
+;---------- Const ----------
 
-;Registres
+;Registers
 
 INTENA          = $09A
 INTENAR         = $01C
@@ -15,7 +15,7 @@ COP1LCL         = $dff082
 COPJMP1         = $dff088
 VPOSR           = $dff004
 
-;Programme
+;Program
 
 COPPERLIST_SIZE = 1000                           ;Size of the copperlist
 LINE            = 100                            ;<= 255
@@ -160,7 +160,7 @@ exit:
               movem.l    (sp)+,d0-a6 
               rts
 	
-WaitRaster:				;Wait for scanline d0. Trashes d1.
+WaitRaster:				              ;Wait for scanline d0. Trashes d1.
 .l:           move.l     $dff004,d1
               lsr.l      #1,d1
               lsr.w      #7,d1

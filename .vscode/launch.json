@@ -4,48 +4,19 @@
         {
             "type": "fs-uae-run",
             "request": "launch",
-            "name": "WINDOWS Run",
+            "name": "Run",
             "buildWorkspace": true,
-            "emulator": "${workspaceFolder}\\bin\\windows_x64\\fs-uae.exe",
-            "emulatorWorkingDir": "${workspaceFolder}\\bin\\windows_x64",
-            "options": [
-                "--chip_memory=1024",
-                "--hard_drive_0=${workspaceFolder}\\fs-uae\\hd0",
-                "--joystick_port_1=none",
-                "--amiga_model=A1200",
-                "--slow_memory=1792"
-            ]
-        },
-        {
-            "type": "fs-uae",
-            "request": "launch",
-            "name": "WINDOWS Debug",
-            "stopOnEntry": true,
-            "serverName": "localhost",
-            "serverPort": 6860,
-            "trace": false,
-            "startEmulator": true,
-            "buildWorkspace": true,
-            "emulator": "${workspaceFolder}\\bin\\windows_x64\\fs-uae.exe",
-            "emulatorWorkingDir": "${workspaceFolder}\\bin\\windows_x64",
-            "program": "${workspaceFolder}\\fs-uae\\hd0\\gencop",
-            "options": [
-                "--chip_memory=1024",
-                "--hard_drive_0=${workspaceFolder}\\fs-uae\\hd0",
-                "--joystick_port_1=none",
-                "--amiga_model=A1200",
-                "--slow_memory=1792",
-                "--remote_debugger=200",
-                "--use_remote_debugger=true",
-                "--automatic_input_grab=0"
-            ]
-        },
-        {
-            "type": "fs-uae-run",
-            "request": "launch",
-            "name": "OSX Run",
-            "buildWorkspace": true,
-            "emulator": "${workspaceFolder}/bin/osx/fs-uae",
+            "emulator": "${workspaceFolder}/bin/fs-uae",
+            "windows": {
+                "emulator": "${workspaceFolder}/bin/fs-uae.exe",
+            },
+            "osx": {
+                "emulator": "${workspaceFolder}/bin/fs-uae",
+            },
+            "linux": {
+                "emulator": "${workspaceFolder}/bin/fs-uae",
+            },
+            "emulatorWorkingDir": "${workspaceFolder}/bin",
             "options": [
                 "--chip_memory=1024",
                 "--hard_drive_0=${workspaceFolder}/fs-uae/hd0",
@@ -57,51 +28,23 @@
         {
             "type": "fs-uae",
             "request": "launch",
-            "name": "OSX Debug",
-            "stopOnEntry": true,
+            "name": "Debug",
+            "stopOnEntry": false,
             "serverName": "localhost",
             "serverPort": 6860,
             "trace": false,
             "startEmulator": true,
-            "buildWorkspace": true,
-            "emulator": "${workspaceFolder}/bin/osx/fs-uae",
-            "program": "${workspaceFolder}/fs-uae/hd0/gencop",
-            "options": [
-                "--chip_memory=1024",
-                "--hard_drive_0=${workspaceFolder}/fs-uae/hd0",
-                "--joystick_port_1=none",
-                "--amiga_model=A1200",
-                "--slow_memory=1792",
-                "--remote_debugger=200",
-                "--use_remote_debugger=true",
-                "--automatic_input_grab=0"
-            ]
-        },
-        {
-            "type": "fs-uae-run",
-            "request": "launch",
-            "name": "LINUX Run",
-            "buildWorkspace": true,
-            "emulator": "${workspaceFolder}/bin/debian9_x64/fs-uae",
-            "options": [
-                "--chip_memory=1024",
-                "--hard_drive_0=${workspaceFolder}/fs-uae/hd0",
-                "--joystick_port_1=none",
-                "--amiga_model=A1200",
-                "--slow_memory=1792"
-            ]
-        },
-        {
-            "type": "fs-uae",
-            "request": "launch",
-            "name": "LINUX Debug",
-            "stopOnEntry": true,
-            "serverName": "localhost",
-            "serverPort": 6860,
-            "trace": false,
-            "startEmulator": true,
-            "buildWorkspace": true,
-            "emulator": "${workspaceFolder}/bin/debian9_x64/fs-uae",
+            "buildWorkspace": false,
+            "windows": {
+                "emulator": "${workspaceFolder}/bin/fs-uae.exe",
+            },
+            "osx": {
+                "emulator": "${workspaceFolder}/bin/fs-uae",
+            },
+            "linux": {
+                "emulator": "${workspaceFolder}/bin/fs-uae",
+            },
+            "emulatorWorkingDir": "${workspaceFolder}/bin",
             "program": "${workspaceFolder}/fs-uae/hd0/gencop",
             "options": [
                 "--chip_memory=1024",

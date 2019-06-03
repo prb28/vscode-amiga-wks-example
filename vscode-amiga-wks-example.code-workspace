@@ -5,10 +5,10 @@
 		}
 	],
 	"settings": {
-		"amiga-assembly.cstool": "bin\\windows_x64\\cstool.exe",
+		"amiga-assembly.cstool": "bin/cstool",
 		"amiga-assembly.vasm": {
 			"enabled": true,
-			"file": "bin\\windows_x64\\vasmm68k_mot.exe",
+			"file": "bin/vasmm68k_mot",
 			"options": [
 				"-m68000",
 				"-Fhunk",
@@ -17,21 +17,22 @@
 		},
 		"amiga-assembly.vlink": {
 			"enabled": true,
-			"file": "bin\\windows_x64\\vlink.exe",
+			"file": "bin/vlink",
 			"includes": "*.s",
 			"excludes": "",
-			"exefilename": "..\\fs-uae\\hd0\\gencop",
+			"exefilename": "../fs-uae/hd0/gencop",
 			"options": [
 				"-bamigahunk",
 				"-Bstatic"
 			]
 		},
 		"amiga-assembly.adfgenerator": {
-			"ADFToolsParentDir": "bin\\windows_x64",
-			"sourceRootDir": "fs-uae\\hd0",
-			"outputADFFile": ".\\build\\disk.adf",
+			"ADFToolsParentDir": "bin",
+			"sourceRootDir": "fs-uae/hd0",
+			"outputADFFile": "./build/disk.adf",
 			"includes": "**/*",
 			"excludes": "**/.*"
-		}
+		},
+		"editor.formatOnSave": true
 	}
 }

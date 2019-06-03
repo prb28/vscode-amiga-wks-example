@@ -1,3 +1,7 @@
+;------------------------------
+; Example inspired by Photon's Tutorial:
+;  https://www.youtube.com/user/ScoopexUs
+;
 ;---------- Includes ----------
               INCDIR      "include"
               INCLUDE     "hw.i"
@@ -175,7 +179,6 @@ DMACONSave:   DC.w        1
 CopperSave:   DC.l        1
 INTENARSave:  DC.w        1
 waitras1:     DC.L        0
-colorcpline:  DC.L        0
 waitras2:     DC.L        0
 copperlist:   DC.L        0
 

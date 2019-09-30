@@ -111,7 +111,7 @@ loopbar2:
               move.w      #COLOR00,(a0)+
               move.w      #$349,(a0)+
 ;End
-              move.l      COPPER_HALT,(a0)
+              move.l      #COPPER_HALT,(a0)
 
 ; Activate Copper list
               move.l      copperlist,COP1LC(a6)

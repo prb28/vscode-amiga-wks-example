@@ -115,7 +115,7 @@ loopbar2:
 
 ; Activate Copper list
               move.l      copperlist,COP1LC(a6)
-              clr.w       COPJMP1
+              move.w      d0,COPJMP1(a6)
 
 resetcount:
               moveq       #$50,d2                        ; cycle duration

@@ -34,7 +34,7 @@
             "serverPort": 6860,
             "trace": false,
             "startEmulator": true,
-            "buildWorkspace": false,
+            "buildWorkspace": true,
             "windows": {
                 "emulator": "${workspaceFolder}/bin/fs-uae.exe",
             },

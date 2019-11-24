@@ -21,6 +21,7 @@
 			"includes": "*.s",
 			"excludes": "",
 			"exefilename": "../fs-uae/hd0/gencop",
+			"entrypoint": "gencop.s",
 			"options": [
 				"-bamigahunk",
 				"-Bstatic"

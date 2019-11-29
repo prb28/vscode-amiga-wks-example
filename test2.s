@@ -1,7 +1,7 @@
 
   ;Changing section to gencop makes everything work again
   ;SECTION    gencop,CODE      
-  SECTION    randomsection,CODE
+  SECTION    randomsection,CODE_C
 
   xdef       SubPartStart
   

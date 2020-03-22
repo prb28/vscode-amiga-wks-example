@@ -1,184 +1,98 @@
 ;------------------------------
-; Example inspired by Photon's Tutorial:
-;  https://www.youtube.com/user/ScoopexUs
-;
+; Example of file loading
 ;---------- Includes ----------
-              INCDIR      "include"
-              INCLUDE     "hw.i"
-              INCLUDE     "funcdef.i"
-              INCLUDE     "exec/exec_lib.i"
-              INCLUDE     "graphics/graphics_lib.i"
-              INCLUDE     "hardware/cia.i"
+               INCDIR     "include"
+               INCLUDE    "funcdef.i"
+               INCLUDE    "exec/exec_lib.i"
+               INCLUDE    "dos/dos_lib.i"
+               INCLUDE    "dos/dos.i"
+               INCLUDE    "hardware/cia.i"
 ;---------- Const ----------
 
-CIAA            = $00bfe001
-COPPERLIST_SIZE = 1000                                   ;Size of the copperlist
-LINE            = 100                                    ;<= 255
+CIAA    = $00bfe001
+SysBase = 4
 
 init:
-              movem.l     d0-a6,-(sp)
-              move.l      4.w,a6                         ; execbase
-              clr.l       d0                      
+               movem.l    d0-a6,-(sp)
+               move.l     SysBase,a6                                                               ; execbase
 
-	; Allocation of chip memory
+       ; load dos library
+               lea        dosname,a1                                                               ;dos.library name string
+               jsr        _LVOOldOpenLibrary(a6)                                                   ; opens dos.library and put it in d0
+               move.l     d0,(dosaddress)                                                          ; copy lib address to a1
+               move.l     d0,a1                                                                    ; copy lib address to a1
+        ; set program
+        ;        move.l     #progname,d1              ; program name
+        ;        move.l     dosaddress,a1
+        ;        jsr        -570(a1) 
+        ;        tst.l      d0				
+        ;        beq        on_error
 
-              move.l      #COPPERLIST_SIZE,d0
-              move.l      #$10002,d1
-              movea.l     $4,a6                          ; This call could be replaced by
-              jsr         _LVOAllocMem(a6)               ; CALLEXEC AllocMem
-              move.l      d0,copperlist
+        ;        move.l     #progdir,d1               ; program dir
+        ;        move.l     dosaddress,a1
+        ;        jsr        -558(a1) 
+        ;        tst.l      d0				
+        ;        beq        on_error
+;Function offsets from : http://amigadev.elowar.com/read/ADCD_2.1/Includes_and_Autodocs_2._guide/node0550.html
+
+        ; Get GetProgramName
+        ;success = GetProgramName(buf, len)
+        ;D0                       D1   D2
+               move.l     #progname,d1                                                             ; program dir
+               move.l     20,d2
+               jsr        -576(a1) 
+               tst.l      d0				
+               beq        on_error
 
 
-              move.l      #gfxname,a1                    ; librairy name
-              jsr         _LVOOldOpenLibrary(a6) 
-              move.l      d0,a1                   
-              move.l      38(a1),d4                      ; copper list pointer to save
-              jsr         _LVOCloseLibrary(a6)
- 
-              move.b      #$80,d7                        ; y position
-              move        #-1,d6                         ; step
+       ; load raw file contents
+       ; open the file
+               move.l     #filename,d1                                                             ; Path pointer
+               move.l     #MODE_OLDFILE,d2                                                         ; Read mode
+               move.l     dosaddress,a1
+               jsr        _LVOOpen(a1)                                                             ; Open file
+               tst.l      d0				
+               beq        on_error
+       ; read the first byte
+               move.l     d0,d1                                                                    ; fileHandler to d1
+               move.l     d0,(fileh)                                                               ; fileHandler to save
+               move.l     #filecontents,d2                                                         ; buffer address to d2
+               move.l     2.l,d3                                                                   ; file length
+               move.l     dosaddress,a1
+               jsr        _LVORead(a1)                                                             ; Read file
+               move.b     -1,d7
+               cmp.b      d0,d7				
+               beq        on_error
+       ; close the file
+               move.l     fileh,d1                                                                 ; fileHandler to d1
+               move.l     dosaddress,a1
+               jsr        _LVOClose(a1)                                                            ; close file
 
-              lea         CUSTOM,a6                      ; adresse de base
-              move.w      INTENAR(a6),INTENARSave        ; Copie de la valeur des interruptions 
-              move.w      DMACONR(a6),DMACONSave         ; sauvegarde du dmacon 
-              move.w      #$138,d0                       ; wait for eoframe paramètre pour la routine de WaitRaster - position à attendre
-              bsr.w       WaitRaster                     ; Appel de la routine wait raster - bsr = jmp,mais pour des adresses moins distantes
-              move.w      #$7fff,INTENA(a6)              ; désactivation de toutes les interruptions bits : valeur + masque sur 7b
-              move.w      #$7fff,INTREQ(a6)              ; disable all bits in INTREQ
-              move.w      #$7fff,INTREQ(a6)              ; disable all bits in INTREQ
-              move.w      #$7fff,DMACON(a6)              ; disable all bits in DMACON
-              move.w      #$87e0,DMACON(a6)              ; Activation classique pour démo
-
-;---------- Copper list ----------
-              movea.l     copperlist,a0
-              move.w      #$1fc,(a0)+   
-              move.w      #0,(a0)+                       ;slow fetch mode for AGA compatibility
-              move.w      #$100,(a0)+
-              move.w      #$0200,(a0)+                   ; wait for screen start
-
-              move.w      #COLOR00,(a0)+
-              move.w      #$349,(a0)+
-
-              move.w      #$2b07,(a0)+
-              move.w      #COPPER_HALT,(a0)+           
-              move.w      #COLOR00,(a0)+
-              move.w      #$56c,(a0)+
-              move.w      #$2c07,(a0)+
-              move.w      #COPPER_HALT,(a0)+           
-
-              move.w      #COLOR00,(a0)+
-              move.w      #$113,(a0)+
-
-;Copy copper bar
-              move        #9,d0 
-              move        #$050,d1
-              move        #$8007,d3
-              move.l      a0,waitras1
-loopbar:
-              move.w      d3,(a0)+
-              move.w      #COPPER_HALT,(a0)+       
-              move.w      #COLOR00,(a0)+
-              move.w      d1,(a0)+        
-              add         #$0100,d3
-              add         #$010,d1
-              dbra        d0,loopbar                     ; loop until -1
-
-              move        #9,d0                          ; loop of 10
-loopbar2:
-              move.w      d3,(a0)+
-              move.w      #COPPER_HALT,(a0)+   
-              move.w      #COLOR00,(a0)+
-              move.w      d1,(a0)+  
-              add         #$0100,d3
-              sub         #$010,d1
-              dbra        d0,loopbar2 
-
-              move.l      a0,waitras2
-              move.w      d3,(a0)+
-              move.w      #COPPER_HALT,(a0)+ 
-              move.w      #COLOR00,(a0)+
-              move.w      #$113,(a0)+  
-
-; End of copper bar
-              move.w      #$ffdf,(a0)+
-              move.w      #COPPER_HALT,(a0)+ 
-              move.w      #$2c07,(a0)+
-              move.w      #COPPER_HALT,(a0)+ 
-              move.w      #COLOR00,(a0)+
-              move.w      #$56c,(a0)+                    ; background color
-              move.w      #$2d07,(a0)+
-              move.w      #COPPER_HALT,(a0)+ 
-              move.w      #COLOR00,(a0)+
-              move.w      #$349,(a0)+
-;End
-              move.l      #COPPER_HALT,(a0)
-
-; Activate Copper list
-              move.l      copperlist,COP1LC(a6)
-              move.w      d0,COPJMP1(a6)
-
-resetcount:
-              moveq       #$50,d2                        ; cycle duration
-              neg         d6
+       ; wait for mouse click
 
 ******************************************************************	
-mainloop:
-		; Wait for vertical blank
-              move.w      #$0c,d0                        ;No buffering, so wait until raster
-              bsr.w       WaitRaster                     ;is below the Display Window.
-
-;----------- main loop ------------------
-              add         d6,d7                          ; Increment
-              dbf         d2,continue   
-              jmp         resetcount 
-
-continue: ; 200A8 - 20116
-              move        #19,d0 
-              move        d7,d3
-              move.l      waitras1,a3
-moveloop: ; 200A8 - 20116
-              move.b      d3,(a3)
-              add         #1,d3
-              add         #6,a3
-              add         #2,a3
-              dbra        d0,moveloop
-
-              move.l      waitras2,a3
-              move.b      d3,(a3)
-;----------- end main loop ------------------
-
-checkmouse:
-              btst        #CIAB_GAMEPORT0,CIAA+ciapra
-              bne.b       mainloop
-
 exit:
-              move.w      #$7fff,DMACON(a6)              ; disable all bits in DMACON
-              or.w        #$8200,(DMACONSave)            ; Bit mask inversion for activation
-              move.w      (DMACONSave),DMACON(a6)        ; Restore values
-              move.l      (CopperSave),COP1LC(a6)        ; Restore values
-              or          #$c000,(INTENARSave)         
-              move        (INTENARSave),INTENA(a6)       ; interruptions reactivation
-              movem.l     (sp)+,d0-a6
-              clr         d0                             ; Return code of the program
-              rts                                        ; End
-	
-WaitRaster:				              ;Wait for scanline d0. Trashes d1.
-.l:           move.l      $dff004,d1
-              lsr.l       #1,d1
-              lsr.w       #7,d1
-              cmp.w       d0,d1
-              bne.s       .l                             ;wait until it matches (eq)
-              rts
-******************************************************************	
-gfxname:
-              GRAFNAME                                   ; inserts the graphics library name
+              ; closes library
+               move.l     dosaddress,a1
+               move.l     SysBase,a6                                                               ; execbase
+               jsr        _LVOCloseLibrary(a6)                                                     ; closes dos.library in a1
+               movem.l    (sp)+,d0-a6
+               clr        d0                                                                       ; Return code of the program
+               rts                                                                                 ; End
 
-              EVEN
+on_error:
+       ; calling ioError
+               move.l     dosaddress,a1
+               jsr        _LVOIoErr(a1)
+               jmp        exit
 
-DMACONSave:   DC.w        1
-CopperSave:   DC.l        1
-INTENARSave:  DC.w        1
-waitras1:     DC.L        0
-waitras2:     DC.L        0
-copperlist:   DC.L        0
-
+******************************************************************
+dosname:
+               DOSNAME
+               even
+fileh:         dc.l       0
+dosaddress:    dc.l       0
+filename:      dc.b       'file.raw',0
+progname:      dc.b       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+progdir:       dc.b       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+filecontents:  dc.l       0,0,0,0,0,0

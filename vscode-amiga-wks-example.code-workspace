@@ -20,7 +20,7 @@
 			"file": "bin/vlink",
 			"includes": "*.s",
 			"excludes": "",
-			"exefilename": "../fs-uae/hd0/gencop",
+			"exefilename": "../uae/dh0/gencop",
 			"options": [
 				"-bamigahunk",
 				"-Bstatic"
@@ -28,7 +28,7 @@
 		},
 		"amiga-assembly.adfgenerator": {
 			"ADFToolsParentDir": "bin",
-			"sourceRootDir": "fs-uae/hd0",
+			"sourceRootDir": "uae/dh0",
 			"outputADFFile": "./build/disk.adf",
 			"includes": "**/*",
 			"excludes": "**/.*"

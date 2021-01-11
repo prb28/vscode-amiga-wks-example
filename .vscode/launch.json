@@ -60,7 +60,7 @@
             ]
         },
         {
-            "type": "fs-uae-run",
+            "type": "uae-run",
             "request": "launch",
             "name": "FS-UAE Run",
             "buildWorkspace": true,
@@ -81,6 +81,20 @@
                 "--joystick_port_1=none",
                 "--amiga_model=A1200",
                 "--slow_memory=1792"
+            ]
+        },
+        {
+            "type": "uae-run",
+            "request": "launch",
+            "name": "WinUAE Run",
+            "buildWorkspace": true,
+            "emulator": "${workspaceFolder}/bin/winuae.exe",
+            "emulatorWorkingDir": "${workspaceFolder}/bin",
+            "options": [
+                "-s",
+                "quickstart=a500,1",
+                "-s",
+                "filesystem=rw,dh0:${workspaceFolder}\\uae\\dh0"
             ]
         }
     ]

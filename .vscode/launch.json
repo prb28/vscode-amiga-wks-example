@@ -10,7 +10,6 @@
             "serverPort": 6860,
             "trace": false,
             "startEmulator": true,
-            "buildWorkspace": true,
             "windows": {
                 "emulator": "${workspaceFolder}/bin/fs-uae.exe",
             },
@@ -31,13 +30,13 @@
                 "--remote_debugger=200",
                 "--use_remote_debugger=true",
                 "--automatic_input_grab=0"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         },
         {
             "type": "winuae",
             "request": "launch",
             "name": "WinUAE Debug",
-            "buildWorkspace": true,
             "stopOnEntry": false,
             "serverName": "localhost",
             "serverPort": 2345,
@@ -57,13 +56,13 @@
                 "debugging_trigger=SYS:gencop",
                 "-s",
                 "debugging_features=gdbserver"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         },
         {
             "type": "uae-run",
             "request": "launch",
             "name": "FS-UAE Run",
-            "buildWorkspace": true,
             "emulator": "${workspaceFolder}/bin/fs-uae",
             "windows": {
                 "emulator": "${workspaceFolder}/bin/fs-uae.exe",
@@ -81,13 +80,13 @@
                 "--joystick_port_1=none",
                 "--amiga_model=A1200",
                 "--slow_memory=1792"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         },
         {
             "type": "uae-run",
             "request": "launch",
             "name": "WinUAE Run",
-            "buildWorkspace": true,
             "emulator": "${workspaceFolder}/bin/winuae.exe",
             "emulatorWorkingDir": "${workspaceFolder}/bin",
             "options": [
@@ -95,7 +94,8 @@
                 "quickstart=a500,1",
                 "-s",
                 "filesystem=rw,dh0:${workspaceFolder}\\uae\\dh0"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         }
     ]
 }

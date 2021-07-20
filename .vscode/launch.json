@@ -5,7 +5,7 @@
             "type": "fs-uae",
             "request": "launch",
             "name": "FS-UAE Debug",
-            "stopOnEntry": false,
+            "stopOnEntry": true,
             "serverName": "localhost",
             "serverPort": 6860,
             "trace": false,
@@ -31,14 +31,15 @@
                 "--remote_debugger=200",
                 "--use_remote_debugger=true",
                 "--automatic_input_grab=0"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         },
         {
             "type": "winuae",
             "request": "launch",
             "name": "WinUAE Debug",
             "buildWorkspace": true,
-            "stopOnEntry": false,
+            "stopOnEntry": true,
             "serverName": "localhost",
             "serverPort": 2345,
             "startEmulator": true,
@@ -57,7 +58,8 @@
                 "debugging_trigger=SYS:gencop",
                 "-s",
                 "debugging_features=gdbserver"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         },
         {
             "type": "uae-run",
@@ -81,7 +83,8 @@
                 "--joystick_port_1=none",
                 "--amiga_model=A1200",
                 "--slow_memory=1792"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         },
         {
             "type": "uae-run",
@@ -95,7 +98,8 @@
                 "quickstart=a500,1",
                 "-s",
                 "filesystem=rw,dh0:${workspaceFolder}\\uae\\dh0"
-            ]
+            ],
+            "preLaunchTask": "amigaassembly: build"
         }
     ]
 }

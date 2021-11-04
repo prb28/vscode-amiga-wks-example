@@ -15,9 +15,10 @@
 			"vlink": {
 				"enabled": true,
 				"command": "${config:amiga-assembly.binDir}/vlink",
-				"includes": "**/*.{s,S,asm,ASM}",
+				"includes": "*.{s,S,asm,ASM}",
 				"excludes": "",
 				"exefilename": "../uae/dh0/gencop",
+				"entrypoint": "gencop.s",
 				"args": [
 					"-bamigahunk",
 					"-Bstatic"

@@ -30,6 +30,24 @@
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"type": "amigaassembly",
+			"adfgenerator": {
+				"ADFToolsParentDir": "${config:amiga-assembly.binDir}",
+				"sourceRootDir": "uae/dh0",
+				"outputADFFile": "./build/disk.adf",
+				"includes": "**/*",
+				"excludes": "**/.*",
+				"adfCreateOptions": [
+					"--label=MYDISK"
+				]
+			},
+			"problemMatcher": [],
+			"label": "adffile",
+			"dependsOn": [
+				"amigaassembly: build"
+			]
 		}
 	]
 }

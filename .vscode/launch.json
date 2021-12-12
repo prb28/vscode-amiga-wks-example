@@ -8,7 +8,7 @@
             "stopOnEntry": true,
             "serverName": "localhost",
             "serverPort": 6860,
-            "trace": false,
+            "trace": true,
             "startEmulator": true,
             "windows": {
                 "emulator": "${config:amiga-assembly.binDir}/fs-uae.exe"
@@ -40,7 +40,7 @@
             "serverName": "localhost",
             "serverPort": 2345,
             "startEmulator": true,
-            "trace": false,
+            "trace": true,
             "exceptionMask": 8188,
             "emulatorStartDelay": 1500,
             "emulator": "${config:amiga-assembly.binDir}/winuae.exe",
@@ -93,6 +93,34 @@
                 "filesystem=rw,dh0:${workspaceFolder}/uae/dh0"
             ],
             "preLaunchTask": "amigaassembly: build"
+        },
+        {
+            "type": "winuae",
+            "request": "launch",
+            "name": "vAmiga Debug",
+            "stopOnEntry": true,
+            "serverName": "localhost",
+            "serverPort": 8080,
+            "startEmulator": true,
+            "trace": true,
+            "emulator": "${workspaceFolder}/vamiga/vAmiga.exe",
+            "emulatorWorkingDir": "${workspaceFolder}",
+            "program": "${workspaceFolder}/uae/dh0/gencop",
+            "options": [
+                "${workspaceFolder}/vamiga/runscript.txt"
+            ],
+            "preLaunchTask": "adffile"
+        },
+        {
+            "type": "uae-run",
+            "request": "launch",
+            "name": "vAmiga Run",
+            "emulator": "${workspaceFolder}/vamiga/vAmiga.exe",
+            "emulatorWorkingDir": "${workspaceFolder}",
+            "options": [
+                "${workspaceFolder}/vamiga/runscript.txt"
+            ],
+            "preLaunchTask": "adffile"
         }
     ]
 }

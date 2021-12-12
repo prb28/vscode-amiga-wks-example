@@ -1,0 +1,25 @@
+# Make sure the Amiga is switched off
+amiga power off
+
+# Load a Kickstart Rom
+memory load rom ./vamiga/kick13.rom"
+
+# Configure memory
+memory set chip 512
+memory set slow 512
+memory set fast 0
+
+# Set the search path for all connected drives
+dfn set searchpath "./build"
+
+# Insert some ADF
+df0 insert "disk.adf"
+
+# Activate the GDB server
+gdbserver set port 8080
+gdbserver set verbose true
+gdbserver start 
+
+# Switch the Amiga on and continue emulation
+amiga power on
+amiga run

@@ -33,6 +33,7 @@ init:
               jsr         _LVOOldOpenLibrary(a6) 
               move.l      d0,a1                   
               move.l      38(a1),d4                      ; copper list pointer to save
+              move.l      d4,CopperSave
               jsr         _LVOCloseLibrary(a6)
  
               move.b      #$80,d7                        ; y position
